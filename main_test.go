@@ -65,3 +65,48 @@ func TestNormalizeAddress(t *testing.T) {
 		})
 	}
 }
+
+func TestNormalizeState(t *testing.T) {
+	testCases := []struct {
+		name   string
+		input  string
+		output string
+	}{
+		{
+			name:   "illinois",
+			input:  "illinois",
+			output: "il",
+		},
+		{
+			name:   "illinoissss",
+			input:  "illinoissss",
+			output: "il",
+		},
+		{
+			name:   "california",
+			input:  "california",
+			output: "ca",
+		},
+		{
+			name:   "cali",
+			input:  "cali",
+			output: "ca",
+		},
+		{
+			name:   "new york",
+			input:  "new york",
+			output: "ny",
+		},
+		{
+			name:   "newyork",
+			input:  "newyork",
+			output: "ny",
+		},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			result := normalizeState(tc.input)
+			require.Equal(t, result, tc.output)
+		})
+	}
+}
