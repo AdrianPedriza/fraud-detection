@@ -35,3 +35,33 @@ func TestNormalizeEmail(t *testing.T) {
 		})
 	}
 }
+
+func TestNormalizeAddress(t *testing.T) {
+	testCases := []struct {
+		name   string
+		input  string
+		output string
+	}{
+		{
+			name:   "address to lower",
+			input:  "123 Sesame St",
+			output: "123 sesame st",
+		},
+		{
+			name:   "address abbreviations: st",
+			input:  "123 Sesame Street",
+			output: "123 sesame st",
+		},
+		{
+			name:   "address abbreviations: rd",
+			input:  "123 Sesame Road",
+			output: "123 sesame rd",
+		},
+	}
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			result := normalizeAddress(tc.input)
+			require.Equal(t, result, tc.output)
+		})
+	}
+}
