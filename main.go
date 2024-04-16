@@ -109,8 +109,6 @@ func normalizeEmail(s string) string {
 		normalizedUsername := strings.ReplaceAll(sLen[0], ".", "")
 		normalizedUsernameLen := strings.Split(normalizedUsername, "+")
 		s = strings.Join([]string{normalizedUsernameLen[0], sLen[1]}, "@")
-	} else {
-		s = strings.Trim(s, ".")
 	}
 
 	return s
