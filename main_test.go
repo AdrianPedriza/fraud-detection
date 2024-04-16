@@ -23,7 +23,7 @@ func TestNormalizeEmail(t *testing.T) {
 			output: "bugs1@bunny.com,",
 		},
 		{
-			name:   "ignored chars",
+			name:   "ignored chars after + char",
 			input:  "bugs+10@bunny.com,",
 			output: "bugs@bunny.com,",
 		},
