@@ -141,8 +141,18 @@ func normalizeState(s string) string {
 	s = strings.ToLower(s)
 	statesAbbreviated := []string{"il", "ca", "ny"}
 	for _, state := range statesAbbreviated {
+		if state == "ny" {
+			sLen := strings.Split(s, " ")
+			if len(sLen) == 2 {
+				firstChar := string(sLen[0][0])
+				firstCharSecondWord := string(sLen[1][0])
+				s = strings.Join([]string{firstChar, firstCharSecondWord}, "")
+			}
+		}
+
 		if strings.HasPrefix(s, state) {
 			s = state
+			break
 		}
 	}
 

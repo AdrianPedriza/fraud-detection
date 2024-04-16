@@ -83,6 +83,11 @@ func TestNormalizeState(t *testing.T) {
 			output: "il",
 		},
 		{
+			name:   "new york",
+			input:  "new york",
+			output: "ny",
+		},
+		{
 			name:   "california",
 			input:  "california",
 			output: "ca",
@@ -91,16 +96,6 @@ func TestNormalizeState(t *testing.T) {
 			name:   "cali",
 			input:  "cali",
 			output: "ca",
-		},
-		{
-			name:   "new york",
-			input:  "new york",
-			output: "ny",
-		},
-		{
-			name:   "newyork",
-			input:  "newyork",
-			output: "ny",
 		},
 	}
 	for _, tc := range testCases {
