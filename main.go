@@ -59,6 +59,7 @@ func main() {
 			creditCard: orderValues[7],
 		}
 
+		isInvalidOrder := false
 		for _, v := range validOrders {
 			normalizedInputOrderEmail := normalizeEmail(order.email)
 			normalizedStoredOrderEmail := normalizeEmail(v.email)
@@ -72,13 +73,20 @@ func main() {
 			if normalizedInputOrderEmail == normalizedStoredOrderEmail && order.dealId == v.dealId && order.creditCard != v.creditCard {
 				fradulentOrders = append(fradulentOrders, v.id)
 				fradulentOrders = append(fradulentOrders, order.id)
+				isInvalidOrder = true
+				break
 			}
 
 			if (normalizedInputOrderAddress == normalizedStoredOrderAddress || order.city == v.city || normalizedInputOrderState == normalizedStoredOrderState || order.code == v.code) && order.dealId == v.dealId && order.creditCard != v.creditCard {
 				fradulentOrders = append(fradulentOrders, v.id)
 				fradulentOrders = append(fradulentOrders, order.id)
+				isInvalidOrder = true
+				break
 			}
 
+		}
+
+		if !isInvalidOrder {
 			validOrders[order.id] = order
 		}
 	}
